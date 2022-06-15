@@ -10,7 +10,7 @@ public class TicTacToe {
 
     public static Scanner scanner = new Scanner(System.in);
 
-    public static  char[] gameBoard = new char[10];
+    public static char[] gameBoard = new char[10];
 
     public static void showBoard() {
 
@@ -24,9 +24,18 @@ public class TicTacToe {
         return scanner.next().toUpperCase().charAt(0);
     }
 
+    public static void ticTacToe() {
+        for (int i = 0; i < gameBoard.length; i++) {
+
+            gameBoard[i] = ' ';
+        }
+    }
+
+
     public static void main(String[] args) {
         System.out.println("Welcome to Tic Tac Toe game");
         showBoard();
         user();
+        ticTacToe();
     }
 }
