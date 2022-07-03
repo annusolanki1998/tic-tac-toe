@@ -2,8 +2,6 @@ package com.bridgelabz;
 
 import java.util.Random;
 import java.util.Scanner;
-
-
 public class TicTacToe {
 
     public static char[] gameBoard = new char[10];
@@ -103,18 +101,28 @@ public class TicTacToe {
                         flag = true;
                     }
                     break;
+
             }
             if (flag == true) {
                 break;
             }
+
         }
     }
+
 
     public static void main(String[] args) {
         System.out.println("Welcome to Tic Tac Toe game");
         ticTacToe();
         showBoard();
         user();
+        int toss, wonToss;
+        toss = (int) (Math.random() * 2);
+        if (toss == 1) {
+            System.out.println("Player win the toss");
+        } else {
+            System.out.println("Computer win the toss");
+        }
 
     }
 }
