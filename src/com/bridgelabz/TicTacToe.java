@@ -1,7 +1,6 @@
 package com.bridgelabz;
-
-import java.util.Random;
 import java.util.Scanner;
+import java.util.Random;
 public class TicTacToe {
 
     public static char[] gameBoard = new char[10];
@@ -10,8 +9,23 @@ public class TicTacToe {
     public static char user = '1';
     public static int userPos;
     public static int computerPos;
+    public static char exitCode = '0';
+    public static int turnCount;
     public static Scanner scanner = new Scanner(System.in);
 
+    public static void declareArray() {
+        // TODO Auto-generated method stub
+        System.out.println("Welcome to Tic-Tac-Toe game");
+        for (int i = 0; i < gameBoard.length; i++) {
+
+            gameBoard[i] = ' ';
+        }
+
+    }
+    public static char user(Scanner scanner) {
+        System.out.println("Enter your choice  X or O only");
+        return scanner.next().toUpperCase().charAt(0);
+    }
 
     public static void showBoard() {
 
@@ -19,19 +33,6 @@ public class TicTacToe {
         System.out.println(gameBoard[3] + " | " + gameBoard[4] + " | " + gameBoard[5]);
         System.out.println(gameBoard[6] + " | " + gameBoard[7] + " | " + gameBoard[8]);
     }
-
-    public static char user() {
-        System.out.println("Enter your choice  X or O only");
-        return scanner.next().toUpperCase().charAt(0);
-    }
-
-    public static void ticTacToe() {
-        for (int i = 0; i < gameBoard.length; i++) {
-
-            gameBoard[i] = ' ';
-        }
-    }
-
     public static void comLocation() {
         boolean flag = false;
         System.out.println("Player choose [0-8]");
@@ -109,13 +110,49 @@ public class TicTacToe {
 
         }
     }
+    public static void blockUser() {
+        if (gameBoard[0] == userTurn && gameBoard[1] == userTurn) {
+            gameBoard[2] = computerTurn;
+        } else if (gameBoard[3] == userTurn && gameBoard[4] == userTurn) {
+            gameBoard[5] = computerTurn;
+        } else if (gameBoard[6] == userTurn && gameBoard[7] == userTurn) {
+            gameBoard[8] = computerTurn;
+        } else if (gameBoard[0] == userTurn && gameBoard[3] == userTurn) {
+            gameBoard[6] = computerTurn;
+        } else if (gameBoard[1] == userTurn && gameBoard[4] == userTurn) {
+            gameBoard[7] = computerTurn;
+        } else if (gameBoard[2] == userTurn && gameBoard[5] == userTurn) {
+            gameBoard[8] = computerTurn;
+        } else if (gameBoard[0] == userTurn && gameBoard[4] == userTurn) {
+            gameBoard[8] = computerTurn;
+        } else if (gameBoard[2] == userTurn && gameBoard[4] == userTurn) {
+            gameBoard[6] = computerTurn;
+        } else if (gameBoard[0] == userTurn && gameBoard[2] == userTurn) {
+            gameBoard[1] = computerTurn;
+        } else if (gameBoard[3] == userTurn && gameBoard[5] == userTurn) {
+            gameBoard[4] = computerTurn;
+        } else if (gameBoard[6] == userTurn && gameBoard[8] == userTurn) {
+            gameBoard[7] = computerTurn;
+        } else if (gameBoard[0] == userTurn && gameBoard[6] == userTurn) {
+            gameBoard[3] = computerTurn;
+        } else if (gameBoard[1] == userTurn && gameBoard[7] == userTurn) {
+            gameBoard[4] = computerTurn;
+        } else if (gameBoard[2] == userTurn && gameBoard[8] == userTurn) {
+            gameBoard[5] = computerTurn;
+        } else if (gameBoard[0] == userTurn && gameBoard[8] == userTurn) {
+            gameBoard[4] = computerTurn;
+        } else if (gameBoard[2] == userTurn && gameBoard[6] == userTurn) {
+            gameBoard[4] = computerTurn;
+        } else if (gameBoard[8] == userTurn && gameBoard[5] == userTurn) {
+            gameBoard[2] = computerTurn;
 
-
+        } else
+            comLocation();
+    }
     public static void main(String[] args) {
-        System.out.println("Welcome to Tic Tac Toe game");
-        ticTacToe();
+        declareArray();
         showBoard();
-        user();
+        user(scanner);
         int toss, wonToss;
         toss = (int) (Math.random() * 2);
         if (toss == 1) {
@@ -123,7 +160,8 @@ public class TicTacToe {
         } else {
             System.out.println("Computer win the toss");
         }
-
+        comLocation();
+        blockUser();
     }
-}
 
+}
